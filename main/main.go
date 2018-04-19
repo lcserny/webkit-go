@@ -49,6 +49,7 @@ func handle(pattern string, function writeHtml, ln net.Listener) {
 }
 
 func index(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "text/html")
 	message := r.URL.Path
 	message = strings.TrimPrefix(message, "/")
 	message = "Hello " + message
@@ -57,6 +58,8 @@ func index(w http.ResponseWriter, r *http.Request) {
 }
 
 func leo(w http.ResponseWriter, r *http.Request) {
-	message := "Leo"
+	w.Header().Set("Content-Type", "text/html")
+	message := "Leo "
+	message = message + "<button onclick='history.back();' style='color: black'>Go Back</button>"
 	w.Write([]byte(message))
 }
